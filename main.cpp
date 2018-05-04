@@ -34,11 +34,6 @@ Input mapToInput(char buffer[]) {
     return ERROR;
 }
 
-//TODO if no connection handle correctly
-void intHandler(int _) {
-    if (close(msg_sock) < 0) syserr("close");
-    exit(1);
-}
 
 int main(int argc, char *argv[]) {
     int sock;
@@ -49,8 +44,6 @@ int main(int argc, char *argv[]) {
     char buffer[BUFFER_SIZE];
     ssize_t len, snd_len;
     if (argc < 2) syserr("Please provide the port number");
-
-    signal(SIGINT, intHandler);
 
     port = atoi(argv[1]);
     sock = socket(PF_INET, SOCK_STREAM, 0); // creating IPv4 TCP socket
