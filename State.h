@@ -6,6 +6,8 @@
 #define SIK1_STATE_H
 
 
+#include <stdexcept>
+#include <vector>
 #include "Util.h"
 
 class Session;
@@ -13,13 +15,20 @@ class Session;
 class State {
 protected:
     int cursor = 0;
+    std::vector<std::string> menu;
 public:
+    std::string currentOption;
 
-    virtual void up() { cursor = ((cursor + 1) % 3); };
+    virtual inline void up() { cursor = static_cast<int>((cursor + menu.size() - 1) % menu.size()); };
 
-    virtual void down() { cursor = ((3 + cursor - 1) % 3); };
+    virtual inline void down() { cursor = static_cast<int>((cursor + 1) % menu.size()); };
 
-    virtual SessionStatus handleInput(Input input, Session &session)= 0;
+    virtual std::string printView() const;
+
+    virtual SessionStatus selectHandler(Session &session)=0;
+
+    virtual SessionStatus handleInput(Input input, Session &session);
+
 };
 
 

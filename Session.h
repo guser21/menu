@@ -9,17 +9,19 @@
 #include "State.h"
 
 
-
 class Session {
-private:
-    State *state;
 public:
+    State *state;
+
     ~Session();
+
     explicit Session();
 
     void setState(State *state);
 
     SessionStatus handleInput(Input input);
+
+    std::string view();
 };
 
 

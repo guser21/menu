@@ -9,6 +9,8 @@ enum SessionStatus {
     ALIVE, DEAD
 };
 enum Input {
-    UP, DOWN, SELECT
+    UP, DOWN, SELECT, ERROR
 };
+
+
 #endif //SIK1_UTIL_H

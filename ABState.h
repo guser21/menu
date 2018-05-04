@@ -9,11 +9,10 @@
 #include "State.h"
 
 class ABState : public State {
-private:
-    SessionStatus selectHandler(Session &session);
-
 public:
-    SessionStatus handleInput(Input input, Session &session) override;
+    ABState() { menu = {"Opcja A", "Opcja B", "Koniec"}; }
+
+    SessionStatus selectHandler(Session &session) override;
 };
 
 
